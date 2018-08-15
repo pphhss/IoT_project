@@ -1,0 +1,2 @@
+      
+void sendImage(char *);
