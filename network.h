@@ -1,9 +1,10 @@
-#define PORT_NUMBER     8080
-#define SERVER_ADDRESS  "192.168.131.1"
-#define fileMaxLength 200
-#define BUFFERSIZE 2147479552
 
+typedef struct{
+  char* name;
+  char* value;
+}info;
 
 void requestSocket(int*,char *,short);    
 void sendImage(char *,int);
 void releaseSocket(int);
+void sendData(info datas[], int length, int cSocket);
