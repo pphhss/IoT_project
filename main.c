@@ -1,32 +1,45 @@
 #include<stdio.h>
 #include<string.h>
+#include<unistd.h>
 #include"network.h"
 
 #define STRINGSIZE 1000
+
+void capture(char *);
 int main(int argc, char** argv){
 
   int cSocket;
-  char* address = "192.168.131.1";
+  char* address = "192.168.0.33";
   short port = 8080;
   
+
+  char filePath[STRINGSIZE];
+  char imagePath[STRINGSIZE];
   info datas[2];
 
-  datas[0].name = "park";
-  datas[0].value = "hyunsun";
+  strcpy(datas[0].name, "name");
+  strcpy(datas[0].value,argv[1]);
 
+  
+  strcpy(datas[1].name, "good");
+  strcpy(datas[1].value, "hello");
 
-  datas[1].name = "p";
-  datas[1].value = "hs";
+  strcpy(imagePath,argv[2]);
+  strcpy(filePath,argv[2]);
+  
+  capture(imagePath);
 
- // char filePath[STRINGSIZE];
-
- // strcpy(filePath,argv[1]);
+  printf("--------------------------------------------------------\n");
 
   requestSocket(&cSocket,address,port);
   
+  printf("%d %s\n",cSocket,filePath);
 
- // sendImage(filePath,cSocket);
+  
   sendData(datas,2,cSocket);
+  sleep(1);
+  printf("sleep well!\n");
+  sendImage(filePath,cSocket);
 
   releaseSocket(cSocket);
 }

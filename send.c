@@ -16,7 +16,9 @@
 
 
 void infoToString(char *text, info datas[],int length){
+  
 
+  int len=0;
   char tmp[TEXTBUFFERSIZE];
   if(length<1){
     fprintf(stderr,"a length of datas is short\n");
@@ -30,8 +32,8 @@ void infoToString(char *text, info datas[],int length){
     strcat(text,tmp);
 
   }
-
-  strcat(text,"}");
+  len = strlen(text);
+  text[len-1] = '}';
 
 }
 
@@ -78,7 +80,7 @@ void sendImage(char *filePath,int cSocket)
     exit(-1);
   }
 
-        printf("Success to transfer datas\n");
+        printf("Success to transfer image\n");
 
         close(fd);
 

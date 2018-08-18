@@ -1,7 +1,7 @@
 
 typedef struct{
-  char* name;
-  char* value;
+  char name[20];
+  char value[20];
 }info;
 
 void requestSocket(int*,char *,short);    

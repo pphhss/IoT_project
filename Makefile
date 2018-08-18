@@ -6,7 +6,7 @@ CC = gcc
 CFLAGS = -g -c
 
 TARGET = main
-SOURCES = main.c send.c socket.c
+SOURCES = main.c send.c socket.c capture.c
 OBJECTS = $(SOURCES:.c=.o)
 
 $(TARGET) : $(OBJECTS)
@@ -21,3 +21,4 @@ clean :
 main.o : main.c
 send.o : send.c
 socket.o : socket.c
+capture.o : capture.c
