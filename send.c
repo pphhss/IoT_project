@@ -14,6 +14,36 @@
 #define BUFFERSIZE 2147479552
 #define TEXTBUFFERSIZE 2000
 
+void getType0(info *datas,char *cid,char* vid, char* temperature, char* heartrate, char* symptominfo){
+  
+  strcpy(datas[0].key, "type");
+  strcpy(datas[0].value,"0");
+
+  strcpy(datas[1].key, "cid");
+  strcpy(datas[1].value, cid);
+ 
+  strcpy(datas[2].key, "vid");
+  strcpy(datas[2].value, vid);
+
+  strcpy(datas[3].key, "temperature");
+  strcpy(datas[3].value, temperature);
+
+  strcpy(datas[4].key, "heartrate");
+  strcpy(datas[4].value, heartrate);
+
+  strcpy(datas[5].key, "symptominfo");
+  strcpy(datas[5].value, symptominfo);
+}
+
+void getType1(info *datas,char *cid){
+  
+  strcpy(datas[0].key, "type");
+  strcpy(datas[0].value,"1");
+
+  strcpy(datas[1].key, "cid");
+  strcpy(datas[1].value, cid);
+ 
+}
 
 void infoToString(char *text, info datas[],int length){
   
@@ -28,7 +58,7 @@ void infoToString(char *text, info datas[],int length){
   for(int i=0;i<length;i++){
     memset(tmp,0,strlen(tmp));
 
-    sprintf(tmp,"\"%s\" : \"%s\",",datas[i].name,datas[i].value);
+    sprintf(tmp,"\"%s\" : \"%s\",",datas[i].key,datas[i].value);
     strcat(text,tmp);
 
   }
