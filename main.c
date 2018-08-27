@@ -12,16 +12,37 @@ int main(int argc, char** argv){
   char* address = "192.168.219.165";
   short port = 8080;
   
-  info datas[6];
-  int length = 6;
+  info datas[2];
+  int length = 2;
 
-  getType0(datas,"1","1","36.5","60","none");
+  char* imagePath = "image.png";
 
-  printf("%s %s %s %s %s\n",datas[1].value,datas[2].value,datas[3].value,datas[4].value,datas[5].value);
+  int sSocket=0;
+  char receive[100];
+  int receiveSize = 100;
+
+  
+
+  getType1(datas,"1"); // input cid.
+
+  printf("%s\n",datas[1].value);
   requestSocket(&cSocket,address,port);
   
-  sendData(datas,6,cSocket);
-  
+  sendData(datas,length,cSocket);
+
+
+  capture(imagePath);
+
+  printf("-----------------------------\n");
+  sleep(1);
+
+  sendImage(imagePath,cSocket);
 
   releaseSocket(cSocket);
+  
+  openServer(&sSocket,port);
+
+  listenServer(&sSocket,receive,receiveSize);
+
+
 }

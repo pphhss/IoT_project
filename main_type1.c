@@ -17,7 +17,13 @@ int main(int argc, char** argv){
 
   char* imagePath = "image.png";
 
-  getType1(datas,"1");
+  int sSocket=0;
+  char receive[100];
+  int receiveSize = 100;
+
+  
+
+  getType1(datas,"1"); // input cid.
 
   printf("%s\n",datas[1].value);
   requestSocket(&cSocket,address,port);
@@ -32,6 +38,11 @@ int main(int argc, char** argv){
 
   sendImage(imagePath,cSocket);
 
-
   releaseSocket(cSocket);
+  
+  openServer(&sSocket,port);
+
+  listenServer(&sSocket,receive,receiveSize);
+
+
 }

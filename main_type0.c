@@ -12,6 +12,10 @@ int main(int argc, char** argv){
   char* address = "192.168.219.165";
   short port = 8080;
   
+  int sSocket=0;
+  char receive[100];
+  int receiveSize =100;
+
   info datas[6];
   int length = 6;
 
@@ -21,7 +25,12 @@ int main(int argc, char** argv){
   requestSocket(&cSocket,address,port);
   
   sendData(datas,6,cSocket);
-  
 
+  // serversocket open..
+  openServer(&sSocket,port);
+
+  listenServer(&sSocket,receive,receiveSize);
+
+  
   releaseSocket(cSocket);
 }
